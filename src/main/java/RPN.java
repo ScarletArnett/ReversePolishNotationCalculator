@@ -1,3 +1,5 @@
+import org.apache.commons.math3.special.Gamma;
+
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -96,6 +98,9 @@ public class RPN {
                 firstOperand = stack.removeLast();
                 stack.add((double) factorial((int) firstOperand));
                 break;
+            case "!G":
+                firstOperand = stack.removeLast();
+                stack.add(Math.exp(Gamma.logGamma(firstOperand)));
         }
     }
 
@@ -183,7 +188,6 @@ public class RPN {
             System.out.println("System.in was closed; exiting");
         }
     }
-
 
     public static void main(String[] args) {
         RPN rpn = new RPN();
