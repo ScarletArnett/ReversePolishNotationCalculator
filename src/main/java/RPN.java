@@ -5,17 +5,23 @@ import java.util.Scanner;
 
 /**
  * Created by Alexandre BAPTISTE on 01/01/2017.
- */
+ * Étudiant LPRO D.A.S.I
+ * Projet: rpn-app
+ **/
 
 public class RPN {
     private LinkedList<Double> stack = new LinkedList<>();
+
+    LinkedList<Double> getStack() {
+        return stack;
+    }
 
     /*
     @String expression: L'expression saisie pour l'utilisateur
     La méthode "évaluer" est utilisée quand un string est passé en arguments
     Enlève les espaces de l'expression puis itère, ajoute et traite les calculs
-     */
-    private void evaluer(String expression) {
+    */
+    double evaluer(String expression) {
         for (String token : expression.split("\\s")) {
             Double tokenNum = null;
             try {
@@ -28,7 +34,7 @@ public class RPN {
                 Operand(token);
             }
         }
-        System.out.println("Réponse: " + stack.removeLast());
+        return stack.removeLast();
     }
 
     /*
@@ -108,12 +114,12 @@ public class RPN {
     @int n: le nombre à "factoriser"
     Petite méthode pour le factoriel d'un entier
      */
-    private static int factorial(int n) {
-        int fact = 0;
+    long factorial(int n)   {
+        long multi = 1;
         for (int i = 1; i <= n; i++) {
-            fact *= i;
+            multi = multi * i;
         }
-        return fact;
+        return multi;
     }
 
     /*
@@ -192,7 +198,7 @@ public class RPN {
     public static void main(String[] args) {
         RPN rpn = new RPN();
         if(args.length != 0){
-            rpn.evaluer(args[0]);
+            System.out.println("Réponse: " + rpn.evaluer(args[0]));
         } else {
             rpn.entree();
         }
